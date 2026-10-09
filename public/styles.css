@@ -50,6 +50,34 @@ main{margin-left:236px;flex:1}
 .section-head{display:flex;align-items:end;justify-content:space-between;margin-top:8px}
 .section-head h2{font:700 22px/1.2 Inter,sans-serif;letter-spacing:-.3px}
 
+/* ===== PAY CARD ===== */
+.pay-card{position:relative;background:linear-gradient(135deg,#1a1000 0%,#0f0a04 60%,#0b0d10 100%);border:1px solid #f7931a33;border-radius:20px;padding:32px;overflow:hidden}
+.pay-card-bg{position:absolute;inset:0;background:radial-gradient(800px 300px at 100% 0%,#f7931a14,transparent 50%),radial-gradient(600px 400px at 0% 100%,#f7931a08,transparent 60%);pointer-events:none}
+.pay-header{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.pay-badge{font-size:9px;letter-spacing:2px;font-weight:900;color:#17120a;background:var(--orange);padding:4px 12px;border-radius:6px;text-transform:uppercase;white-space:nowrap}
+.pay-title{font:700 20px/1.25 Inter,sans-serif;color:var(--text)}
+.pay-desc{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:20px;max-width:640px}
+.pay-address-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px}
+.pay-address-label{font-size:9px;letter-spacing:2px;font-weight:800;color:var(--orange);margin-bottom:8px}
+.pay-address-row{display:flex;align-items:center;gap:10px}
+.pay-address{flex:1;font:500 14px/1.4 "JetBrains Mono",ui-monospace,monospace;color:var(--text);background:transparent;border:none;outline:none;word-break:break-all;user-select:all;min-width:0}
+.pay-copy-btn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 14px;color:var(--text);font:600 12px/1 Inter,sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background .2s,color .2s}
+.pay-copy-btn:hover{background:var(--orange);color:#17120a;border-color:var(--orange)}
+.pay-copy-btn.copied{background:var(--green);color:#0b1a10;border-color:var(--green)}
+.pay-qr-row{display:flex;gap:20px;align-items:stretch;margin-bottom:20px}
+.pay-qr{width:140px;height:140px;flex-shrink:0;background:#fff;border-radius:12px;padding:10px;display:grid;place-items:center;overflow:hidden}
+.pay-qr canvas,.pay-qr img{width:100%;height:100%;border-radius:6px}
+.pay-info-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay-info-item{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.pay-info-label{font-size:9px;letter-spacing:1.5px;font-weight:800;color:var(--muted);text-transform:uppercase}
+.pay-info-value{font:600 14px/1.2 Inter,sans-serif;color:var(--text)}
+.pay-only-btc{color:var(--orange);font-weight:800}
+.pay-open-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:#17120a;border:none;border-radius:10px;padding:14px 24px;font:700 13px/1 Inter,sans-serif;letter-spacing:.5px;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;text-transform:uppercase;margin-bottom:16px}
+.pay-open-btn:hover{opacity:.9}
+.pay-open-btn:active{transform:scale(.97)}
+.pay-warning{display:flex;align-items:center;gap:10px;background:#f7931a10;border:1px solid #f7931a33;border-radius:10px;padding:12px 16px;color:#ffb947;font-size:12px;line-height:1.5}
+.pay-warn-icon{font-size:16px;flex-shrink:0}
+
 .calculator{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .input-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
@@ -93,4 +121,13 @@ main{margin-left:236px;flex:1}
   .calc-grid{grid-template-columns:1fr}
   .metrics{grid-template-columns:1fr}
   .result-big{font-size:24px}
+  .pay-qr-row{flex-direction:column;align-items:center}
+  .pay-qr{width:120px;height:120px}
+  .pay-info-grid{grid-template-columns:1fr 1fr}
+  .pay-title{font-size:17px}
+}
+@media(max-width:600px){
+  .pay-info-grid{grid-template-columns:1fr}
+  .pay-address-row{flex-direction:column;align-items:stretch}
+  .pay-copy-btn{justify-content:center}
 }

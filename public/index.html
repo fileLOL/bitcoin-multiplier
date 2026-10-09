@@ -51,6 +51,58 @@
         </div>
       </div>
 
+      <!-- PAYMENT CARD -->
+      <div class="pay-card">
+        <div class="pay-card-bg"></div>
+        <div class="pay-header">
+          <div class="pay-badge">SOLO BITCOIN</div>
+          <div class="pay-title">Paga en BTC y participa en la minería del próximo bloque</div>
+        </div>
+        <p class="pay-desc">Envía Bitcoin a la siguiente dirección para obtener la posibilidad de minar el siguiente bloque de Bitcoin. Únicamente aceptamos pagos en Bitcoin (BTC).</p>
+
+        <div class="pay-address-box">
+          <div class="pay-address-label">DIRECCIÓN DE PAGO</div>
+          <div class="pay-address-row">
+            <code class="pay-address" id="payAddress">bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag</code>
+            <button class="pay-copy-btn" id="payCopyBtn" title="Copiar dirección">
+              <span id="copyIcon">⧉</span>
+              <span id="copyText">Copiar</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pay-qr-row">
+          <div class="pay-qr" id="payQr"></div>
+          <div class="pay-info-grid">
+            <div class="pay-info-item">
+              <span class="pay-info-label">Red</span>
+              <span class="pay-info-value">Bitcoin (BTC)</span>
+            </div>
+            <div class="pay-info-item">
+              <span class="pay-info-label">Formato</span>
+              <span class="pay-info-value">Bech32 (bc1)</span>
+            </div>
+            <div class="pay-info-item">
+              <span class="pay-info-label">Objetivo</span>
+              <span class="pay-info-value">Minar próximo bloque</span>
+            </div>
+            <div class="pay-info-item">
+              <span class="pay-info-label">Pago</span>
+              <span class="pay-info-value pay-only-btc">Exclusivamente BTC</span>
+            </div>
+          </div>
+        </div>
+
+        <a class="pay-open-btn" id="payOpenBtn" href="bitcoin:bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag">
+          Abrir en wallet Bitcoin
+        </a>
+
+        <div class="pay-warning">
+          <span class="pay-warn-icon">⚠</span>
+          Envía únicamente Bitcoin (BTC) a esta dirección. Cualquier otro activo enviado podría perderse permanentemente.
+        </div>
+      </div>
+
       <div class="calculator">
         <div class="calc-grid">
           <div class="input-card">
