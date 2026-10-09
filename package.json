@@ -1,0 +1,8 @@
+{
+  "name": "bitcoin-multiplier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Panel de control para minería real de Bitcoin y monitorización de Bitcoin Core",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

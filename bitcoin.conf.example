@@ -1,0 +1,8 @@
+# EJEMPLO para Bitcoin Core en la MISMA máquina que el backend.
+# No abras el puerto 8332 a Internet ni reenvíes ese puerto en el router.
+server=1
+rpcuser=pon_aqui_tu_usuario_rpc
+rpcpassword=pon_aqui_una_contrasena_rpc_larga
+# Solo permite conexiones locales al RPC:
+rpcbind=127.0.0.1
+rpcallowip=127.0.0.1
