@@ -2,164 +2,158 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0d10">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
 <title>Bitcoin Multiplier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<div class="shell">
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="coin">₿</div>
-      <div><b>BITCOIN<span> MULTIPLIER</span></b><small>MULTIPLY YOUR BTC</small></div>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-circle">₿</div>
+      <div>
+        <div class="logo-title">Bitcoin Multiplier</div>
+        <div class="logo-sub">Minería de bloques BTC</div>
+      </div>
     </div>
-    <div class="side-label">WORKSPACE</div>
-    <button class="nav active"><span>◫</span> Multiplier</button>
-    <div class="side-bottom">
-      <div class="live-dot"></div>
-      <span>Ready</span>
-      <div class="side-version">v2.0</div>
+    <div class="header-right">
+      <div class="btc-price-badge" id="headerPrice">Cargando...</div>
     </div>
-  </aside>
-  <main>
-    <header class="topbar">
-      <div class="crumb">Workspace <span>/</span> <b>Bitcoin Multiplier</b></div>
-      <div class="top-right">
-        <span class="status-pill"><i></i><span>ACTIVE</span></span>
-        <div class="avatar">₿</div>
-      </div>
-    </header>
-    <section class="content">
-      <div class="hero">
-        <div>
-          <div class="eyebrow"><span class="pulse"></span> BITCOIN MULTIPLIER</div>
-          <h1>Multiply your<br><em>BTC.</em></h1>
-          <p>Introduce la cantidad de Bitcoin que quieras y multiplícala al instante.</p>
-        </div>
-        <div class="hero-art">
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-          <div class="big-coin">₿</div>
-        </div>
-      </div>
+  </header>
 
-      <div class="section-head">
-        <div>
-          <div class="eyebrow muted">CALCULATOR</div>
-          <h2>Multiplicar BTC</h2>
+  <!-- BALANCE CARD -->
+  <section class="balance-section">
+    <div class="balance-card">
+      <div class="balance-label">Próximo bloque de Bitcoin</div>
+      <div class="balance-amount" id="blockReward">3.125 BTC</div>
+      <div class="balance-sub" id="blockHeight">Bloque #<span id="currentBlock">—</span></div>
+      <div class="balance-usd" id="blockUsd">≈ $—</div>
+      <div class="balance-visual">
+        <div class="mining-ring">
+          <svg viewBox="0 0 120 120" width="100" height="100">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a2e" stroke-width="6"/>
+            <circle id="miningArc" cx="60" cy="60" r="52" fill="none" stroke="#f7931a" stroke-width="6"
+              stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+              transform="rotate(-90 60 60)"/>
+          </svg>
+          <div class="mining-ring-label" id="miningPercent">0%</div>
+        </div>
+        <div class="mining-stats">
+          <div class="mstat"><span class="mstat-label">Hashrate global</span><span class="mstat-val" id="globalHash">—</span></div>
+          <div class="mstat"><span class="mstat-label">Dificultad</span><span class="mstat-val" id="difficulty">—</span></div>
+          <div class="mstat"><span class="mstat-label">Mineros activos</span><span class="mstat-val" id="activeMiners">—</span></div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- PAYMENT CARD -->
-      <div class="pay-card">
-        <div class="pay-card-bg"></div>
-        <div class="pay-header">
-          <div class="pay-badge">SOLO BITCOIN</div>
-          <div class="pay-title">Paga en BTC y participa en la minería del próximo bloque</div>
+  <!-- PAY SECTION -->
+  <section class="pay-section">
+    <div class="section-label">PAGA EN BITCOIN</div>
+    <h2 class="section-title">Minar el próximo bloque</h2>
+    <p class="section-desc">Envía BTC a esta dirección para participar en la minería del siguiente bloque. Solo aceptamos Bitcoin.</p>
+
+    <div class="pay-box">
+      <div class="qr-wrapper">
+        <img id="qrCode" class="qr-img" alt="QR Bitcoin" src="" />
+        <div class="qr-badge">SOLO BTC</div>
+      </div>
+
+      <div class="pay-details">
+        <div class="pay-addr-label">Dirección Bitcoin (Bech32)</div>
+        <div class="pay-addr-row">
+          <code class="pay-addr" id="payAddr">bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag</code>
+          <button class="btn-copy" id="btnCopy">Copiar</button>
         </div>
-        <p class="pay-desc">Envía Bitcoin a la siguiente dirección para obtener la posibilidad de minar el siguiente bloque de Bitcoin. Únicamente aceptamos pagos en Bitcoin (BTC).</p>
 
-        <div class="pay-address-box">
-          <div class="pay-address-label">DIRECCIÓN DE PAGO</div>
-          <div class="pay-address-row">
-            <code class="pay-address" id="payAddress">bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag</code>
-            <button class="pay-copy-btn" id="payCopyBtn" title="Copiar dirección">
-              <span id="copyIcon">⧉</span>
-              <span id="copyText">Copiar</span>
-            </button>
+        <div class="pay-amounts">
+          <div class="pay-amt-label">Cantidades sugeridas</div>
+          <div class="pay-amt-grid">
+            <button class="amt-btn" data-amount="0.001">0.001 BTC</button>
+            <button class="amt-btn" data-amount="0.005">0.005 BTC</button>
+            <button class="amt-btn" data-amount="0.01">0.01 BTC</button>
+            <button class="amt-btn" data-amount="0.05">0.05 BTC</button>
           </div>
         </div>
 
-        <div class="pay-qr-row">
-          <div class="pay-qr" id="payQr"></div>
-          <div class="pay-info-grid">
-            <div class="pay-info-item">
-              <span class="pay-info-label">Red</span>
-              <span class="pay-info-value">Bitcoin (BTC)</span>
-            </div>
-            <div class="pay-info-item">
-              <span class="pay-info-label">Formato</span>
-              <span class="pay-info-value">Bech32 (bc1)</span>
-            </div>
-            <div class="pay-info-item">
-              <span class="pay-info-label">Objetivo</span>
-              <span class="pay-info-value">Minar próximo bloque</span>
-            </div>
-            <div class="pay-info-item">
-              <span class="pay-info-label">Pago</span>
-              <span class="pay-info-value pay-only-btc">Exclusivamente BTC</span>
-            </div>
-          </div>
-        </div>
-
-        <a class="pay-open-btn" id="payOpenBtn" href="bitcoin:bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag">
-          Abrir en wallet Bitcoin
-        </a>
-
-        <div class="pay-warning">
-          <span class="pay-warn-icon">⚠</span>
-          Envía únicamente Bitcoin (BTC) a esta dirección. Cualquier otro activo enviado podría perderse permanentemente.
+        <div class="pay-actions">
+          <a class="btn-wallet" id="btnWallet" href="bitcoin:bc1q6p2ugwymlzvm7mrzpy2axh8czm2h9n496082ag">Abrir wallet</a>
+          <button class="btn-paid" id="btnPaid">Ya he pagado</button>
         </div>
       </div>
+    </div>
 
-      <div class="calculator">
-        <div class="calc-grid">
-          <div class="input-card">
-            <div class="input-label">CANTIDAD BTC</div>
-            <div class="input-wrap">
-              <span class="input-prefix">₿</span>
-              <input type="number" id="btcInput" placeholder="0.001" step="any" min="0">
-            </div>
-          </div>
-          <div class="input-card">
-            <div class="input-label">MULTIPLICADOR</div>
-            <div class="input-wrap">
-              <span class="input-prefix">×</span>
-              <input type="number" id="multiplierInput" placeholder="10" step="any" min="0" value="10">
-            </div>
-          </div>
-        </div>
-        <button id="multiplyBtn">
-          <span>⚡</span> Multiplicar
-        </button>
-      </div>
+    <div class="pay-warning">
+      <span>⚠</span> Envía únicamente Bitcoin (BTC). Otros activos se perderán.
+    </div>
+  </section>
 
-      <div class="result-card" id="resultCard">
-        <div class="result-head">
-          <div class="eyebrow muted">RESULTADO</div>
-          <div class="result-badge" id="resultBadge">ESPERANDO</div>
-        </div>
-        <div class="result-body">
-          <div class="result-main">
-            <div class="result-big" id="resultValue">—</div>
-            <div class="result-sub" id="resultSub">Introduce una cantidad y pulsa multiplicar</div>
-          </div>
-          <div class="result-icon">₿</div>
-        </div>
-        <div class="result-detail" id="resultDetail"></div>
-      </div>
+  <!-- MINING POOL -->
+  <section class="pool-section">
+    <div class="section-label">POOL DE MINERÍA</div>
+    <h2 class="section-title">Mineros activos</h2>
 
-      <div class="metrics">
-        <article class="metric">
-          <div class="metric-top"><span>Entrada</span><span class="metric-icon">↙</span></div>
-          <div class="metric-value" id="metricInput">— <small>BTC</small></div>
-          <div class="metric-foot"><span class="tag">INPUT</span><span>Original</span></div>
-        </article>
-        <article class="metric">
-          <div class="metric-top"><span>Multiplicador</span><span class="metric-icon">×</span></div>
-          <div class="metric-value" id="metricMult">—</div>
-          <div class="metric-foot"><span class="tag">FACTOR</span><span>Factor</span></div>
-        </article>
-        <article class="metric highlight">
-          <div class="metric-top"><span>Resultado</span><span class="metric-icon">↗</span></div>
-          <div class="metric-value" id="metricResult">— <small>BTC</small></div>
-          <div class="metric-foot"><span class="tag">OUTPUT</span><span>Final</span></div>
-        </article>
+    <div class="pool-header-row">
+      <div class="pool-stat">
+        <div class="pool-stat-num" id="poolMiners">0</div>
+        <div class="pool-stat-label">Mineros</div>
       </div>
-    </section>
-  </main>
+      <div class="pool-stat">
+        <div class="pool-stat-num" id="poolBtc">0 BTC</div>
+        <div class="pool-stat-label">Total en pool</div>
+      </div>
+      <div class="pool-stat">
+        <div class="pool-stat-num" id="poolHash">0 TH/s</div>
+        <div class="pool-stat-label">Hashrate pool</div>
+      </div>
+    </div>
+
+    <div class="miner-list" id="minerList">
+      <div class="miner-empty" id="minerEmpty">
+        <div class="miner-empty-icon">⛏</div>
+        <div class="miner-empty-text">Sé el primero en minar este bloque</div>
+        <div class="miner-empty-sub">Envía BTC y pulsa "Ya he pagado"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="info-section">
+    <div class="section-label">CÓMO FUNCIONA</div>
+    <h2 class="section-title">3 pasos para minar</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Envía BTC</div>
+        <div class="step-desc">Escanea el código QR o copia la dirección y envía Bitcoin desde tu wallet.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Confirma el pago</div>
+        <div class="step-desc">Pulsa "Ya he pagado" para registrarte en el pool de minería del próximo bloque.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Participa en la minería</div>
+        <div class="step-desc">Tu aporte se suma al pool. Si el pool encuentra el bloque, participas de la recompensa.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">₿ Bitcoin Multiplier</div>
+    <div class="footer-note">Solo pagos en Bitcoin · Red principal (mainnet)</div>
+  </footer>
+
 </div>
+
 <script src="/app.js"></script>
 </body>
 </html>
