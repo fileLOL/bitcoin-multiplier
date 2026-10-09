@@ -1,42 +1,113 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0d10">
-<meta name="description" content="Bitcoin Multiplier: panel de monitorización de minería real de Bitcoin.">
-<title>Bitcoin Multiplier — Mining Console</title>
+<title>Bitcoin Multiplier</title>
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar">
-    <div class="brand"><div class="coin">₿</div><div><b>BITCOIN<span> MULTIPLIER</span></b><small>MINING CONSOLE</small></div></div>
+    <div class="brand">
+      <div class="coin">₿</div>
+      <div><b>BITCOIN<span> MULTIPLIER</span></b><small>MULTIPLY YOUR BTC</small></div>
+    </div>
     <div class="side-label">WORKSPACE</div>
-    <button class="nav active" data-scroll="overview"><span>◫</span> Overview</button>
-    <button class="nav" data-scroll="network"><span>⌁</span> Network status</button>
-    <button class="nav" data-scroll="connection"><span>⚙</span> Ajustes de conexión</button>
-    <div class="side-bottom"><div class="live-dot"></div><span id="connectionLabel">Sin conectar</span><div class="side-version">v1.0</div></div>
+    <button class="nav active"><span>◫</span> Multiplier</button>
+    <div class="side-bottom">
+      <div class="live-dot"></div>
+      <span>Ready</span>
+      <div class="side-version">v2.0</div>
+    </div>
   </aside>
   <main>
-    <header class="topbar"><div class="crumb">Workspace <span>/</span> <b>Mining dashboard</b></div><div class="top-right"><span class="status-pill"><i id="statusDot"></i><span id="statusText">DEMO / SIN CONEXIÓN</span></span><div class="avatar">₿</div></div></header>
-    <section id="overview" class="content">
-      <div class="hero"><div><div class="eyebrow"><span class="pulse"></span> BITCOIN NETWORK MONITOR</div><h1>Make every hash<br><em>count.</em></h1><p>Tu centro de control para monitorizar el nodo Bitcoin y seguir tu camino hacia la minería real.</p><div class="hero-actions"><button class="primary" id="refreshBtn">↻ &nbsp; Actualizar métricas</button><a class="secondary" href="https://mempool.space/" target="_blank" rel="noreferrer">Explorar la red ↗</a></div></div><div class="hero-art"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="big-coin">₿</div><div class="float-tag">PROOF OF WORK <b>●</b></div><div class="art-caption">DECENTRALISED<br><strong>BY DESIGN</strong></div></div></div>
-      <div class="section-head"><div><div class="eyebrow muted">LIVE TELEMETRY</div><h2>Network overview</h2></div><div class="updated">Última actualización <b id="lastUpdated">—</b></div></div>
+    <header class="topbar">
+      <div class="crumb">Workspace <span>/</span> <b>Bitcoin Multiplier</b></div>
+      <div class="top-right">
+        <span class="status-pill"><i></i><span>ACTIVE</span></span>
+        <div class="avatar">₿</div>
+      </div>
+    </header>
+    <section class="content">
+      <div class="hero">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> BITCOIN MULTIPLIER</div>
+          <h1>Multiply your<br><em>BTC.</em></h1>
+          <p>Introduce la cantidad de Bitcoin que quieras y multiplícala al instante.</p>
+        </div>
+        <div class="hero-art">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="big-coin">₿</div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <div class="eyebrow muted">CALCULATOR</div>
+          <h2>Multiplicar BTC</h2>
+        </div>
+      </div>
+
+      <div class="calculator">
+        <div class="calc-grid">
+          <div class="input-card">
+            <div class="input-label">CANTIDAD BTC</div>
+            <div class="input-wrap">
+              <span class="input-prefix">₿</span>
+              <input type="number" id="btcInput" placeholder="0.001" step="any" min="0">
+            </div>
+          </div>
+          <div class="input-card">
+            <div class="input-label">MULTIPLICADOR</div>
+            <div class="input-wrap">
+              <span class="input-prefix">×</span>
+              <input type="number" id="multiplierInput" placeholder="10" step="any" min="0" value="10">
+            </div>
+          </div>
+        </div>
+        <button id="multiplyBtn">
+          <span>⚡</span> Multiplicar
+        </button>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="result-head">
+          <div class="eyebrow muted">RESULTADO</div>
+          <div class="result-badge" id="resultBadge">ESPERANDO</div>
+        </div>
+        <div class="result-body">
+          <div class="result-main">
+            <div class="result-big" id="resultValue">—</div>
+            <div class="result-sub" id="resultSub">Introduce una cantidad y pulsa multiplicar</div>
+          </div>
+          <div class="result-icon">₿</div>
+        </div>
+        <div class="result-detail" id="resultDetail"></div>
+      </div>
+
       <div class="metrics">
-        <article class="metric"><div class="metric-top"><span>Altura de bloques</span><span class="metric-icon">▤</span></div><div class="metric-value" id="blocks">—</div><div class="metric-foot"><span class="tag">BLOCKCHAIN</span><span id="headersText">Cabeceras: —</span></div><div class="mini-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
-        <article class="metric"><div class="metric-top"><span>Hashrate de red</span><span class="metric-icon">⌁</span></div><div class="metric-value" id="hashrate">— <small>—</small></div><div class="metric-foot"><span class="tag">NETWORK</span><span>Estimación global</span></div><div class="hash-line"><svg viewBox="0 0 300 44" preserveAspectRatio="none"><path d="M0 36 L20 31 L40 34 L60 19 L80 24 L100 12 L120 21 L140 8 L160 16 L180 6 L200 18 L220 12 L240 19 L260 7 L280 12 L300 3"/></svg></div></article>
-        <article class="metric"><div class="metric-top"><span>Dificultad</span><span class="metric-icon">◈</span></div><div class="metric-value" id="difficulty">—</div><div class="metric-foot"><span class="tag">PROOF OF WORK</span><span>Red Bitcoin</span></div><div class="metric-note">La dificultad se ajusta para mantener el ritmo de bloques.</div></article>
-        <article class="metric balance"><div class="metric-top"><span>Saldo de cartera</span><span class="metric-icon">₿</span></div><div class="metric-value" id="balance">— <small>BTC</small></div><div class="metric-foot"><span class="tag">WALLET</span><span id="walletNote">No consultado</span></div><div class="balance-bottom">Tus claves privadas nunca deben entrar en este panel.</div></article>
+        <article class="metric">
+          <div class="metric-top"><span>Entrada</span><span class="metric-icon">↙</span></div>
+          <div class="metric-value" id="metricInput">— <small>BTC</small></div>
+          <div class="metric-foot"><span class="tag">INPUT</span><span>Original</span></div>
+        </article>
+        <article class="metric">
+          <div class="metric-top"><span>Multiplicador</span><span class="metric-icon">×</span></div>
+          <div class="metric-value" id="metricMult">—</div>
+          <div class="metric-foot"><span class="tag">FACTOR</span><span>Factor</span></div>
+        </article>
+        <article class="metric highlight">
+          <div class="metric-top"><span>Resultado</span><span class="metric-icon">↗</span></div>
+          <div class="metric-value" id="metricResult">— <small>BTC</small></div>
+          <div class="metric-foot"><span class="tag">OUTPUT</span><span>Final</span></div>
+        </article>
       </div>
-      <div id="notice" class="notice"><div class="notice-icon">i</div><div><b>Modo de vista previa</b><p>Conecta el backend con Bitcoin Core desde Ajustes para ver datos reales. Los guiones no son datos de minería.</p></div><button id="dismissNotice" aria-label="Cerrar aviso">×</button></div>
-      <div class="lower-grid">
-        <section id="network" class="panel"><div class="panel-head"><div><div class="eyebrow muted">NODE HEALTH</div><h3>Estado del nodo</h3></div><span class="small-badge" id="syncBadge">ESPERANDO DATOS</span></div><div class="sync-row"><div class="sync-ring" id="syncRing"><div><b id="syncPercent">—</b><small>SYNC</small></div></div><div class="sync-copy"><b id="syncTitle">Conecta tu nodo</b><p id="syncDescription">Cuando la API responda, aquí verás el progreso de sincronización comunicado por Bitcoin Core.</p></div></div><div class="data-row"><span>Red</span><b id="chainName">—</b></div><div class="data-row"><span>Modo de sincronización</span><b id="ibd">—</b></div><div class="data-row"><span>Estado API</span><b id="apiStatus">Desconectado</b></div></section>
-        <section class="panel"><div class="panel-head"><div><div class="eyebrow muted">REAL-WORLD MINING</div><h3>Próximos pasos</h3></div><span class="panel-symbol">↗</span></div><div class="step"><div class="step-num">01</div><div><b>Sincroniza Bitcoin Core</b><p>Espera a que el nodo valide la cadena de bloques.</p></div><span class="step-check">○</span></div><div class="step"><div class="step-num">02</div><div><b>Conecta un ASIC a un pool</b><p>Un PC normal no suele ser competitivo para minar BTC.</p></div><span class="step-check">○</span></div><div class="step"><div class="step-num">03</div><div><b>Configura una dirección de cobro</b><p>Usa una cartera propia y verifica la dirección dos veces.</p></div><span class="step-check">○</span></div><a class="guide-link" href="https://bitcoin.org/en/" target="_blank" rel="noreferrer">Leer documentación de Bitcoin <span>↗</span></a></section>
-      </div>
-      <section id="connection" class="panel connection-panel"><div class="panel-head"><div><div class="eyebrow muted">CONFIGURATION</div><h3>Ajustes de conexión</h3><p class="panel-sub">Introduce la URL del backend, no la URL RPC privada de Bitcoin Core.</p></div><span class="metric-icon">⚙</span></div><div class="form-grid"><label>URL del backend API<input id="apiUrl" placeholder="http://127.0.0.1:3000" autocomplete="url"></label><label>Token API (si configuraste API_TOKEN)<input id="apiToken" type="password" placeholder="Token del servidor" autocomplete="off"></label></div><div class="form-actions"><button class="primary" id="saveBtn">Guardar y conectar</button><span id="formMessage" role="status">La configuración solo se guarda en esta pestaña.</span></div><div class="security-note"><span>⌑</span><p><b>Seguridad primero.</b> No introduzcas aquí la contraseña RPC, la frase semilla ni claves privadas. Las credenciales RPC van en las variables de entorno del backend.</p></div></section>
-      <footer><div class="brand mini"><div class="coin">₿</div><b>BITCOIN MULTIPLIER</b></div><span>Datos sujetos a disponibilidad del nodo · Sin promesas de rentabilidad</span></footer>
     </section>
   </main>
 </div>
 <script src="/app.js"></script>
-</body></html>
+</body>
+</html>
